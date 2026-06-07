@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://cddp5v2n2msf2"]
+
+[ext_resource type="FontFile" uid="uid://cip0bthnjwbc2" path="res://assets/fuentes/Null_Free.otf" id="1_aebfe"]
+[ext_resource type="Script" uid="uid://cs58wjy703krd" path="res://scripts/juego/main.gd" id="1_ljjgw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ay6p1"]
+bg_color = Color(0.91228896, 0.9122889, 0.91228884, 1)
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+
+[sub_resource type="FontVariation" id="FontVariation_aebfe"]
+base_font = ExtResource("1_aebfe")
+spacing_glyph = 6
+baseline_offset = 0.1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aebfe"]
+bg_color = Color(0.27058825, 0.26666668, 0.26666668, 1)
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
+corner_detail = 20
+
+[node name="Main" type="Control" unique_id=100009904]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ljjgw")
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=313289379]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ZonaTap" type="Panel" parent="." unique_id=283883707]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ay6p1")
+
+[node name="BotonCarga" type="Button" parent="ZonaTap" unique_id=816183676]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_aebfe")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_aebfe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_aebfe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aebfe")
+theme_override_styles/focus = SubResource("StyleBoxFlat_aebfe")
+text = "TAP"
+
+[node name="PuntoDisparo" type="Marker2D" parent="ZonaTap/BotonCarga" unique_id=1975984762]
+position = Vector2(100, 100)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=322316821]
+wait_time = 2.0
+autostart = true
+
+[node name="IndicadorCarga" type="Label" parent="." unique_id=546569211]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Nivel de carga: 0"
+
+[connection signal="button_down" from="ZonaTap/BotonCarga" to="." method="_on_boton_carga_button_down"]
+[connection signal="button_up" from="ZonaTap/BotonCarga" to="." method="_on_boton_carga_button_up"]
+[connection signal="pressed" from="ZonaTap/BotonCarga" to="." method="_on_boton_carga_pressed"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

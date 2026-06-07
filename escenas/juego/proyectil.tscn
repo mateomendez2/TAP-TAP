@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dw1ut5axfohsy"]
+
+[ext_resource type="Script" uid="uid://bs37eusxfuu5e" path="res://scripts/juego/proyectil.gd" id="1_wqgn0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wm5ye"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqgn0"]
+radius = 20.0
+
+[node name="Proyectil" type="Area2D" unique_id=322860192]
+script = ExtResource("1_wqgn0")
+
+[node name="Visual" type="Panel" parent="." unique_id=383370976]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wm5ye")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=211804595]
+shape = SubResource("CircleShape2D_wqgn0")
